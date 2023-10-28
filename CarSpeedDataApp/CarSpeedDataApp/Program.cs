@@ -1,3 +1,7 @@
+using CarSpeedDataApp.Core.Models;
+using CarSpeedDataApp.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace CarSpeedDataApp
 {
 	public class Program
@@ -12,6 +16,9 @@ namespace CarSpeedDataApp
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+			builder.Services.AddDbContext<CarSpeedDataDbContext>(options =>
+				options.UseSqlServer(builder.Configuration
+					.GetConnectionString("car-speed-data")));
 
 			var app = builder.Build();
 

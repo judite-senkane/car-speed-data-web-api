@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarSpeedDataApp.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarSpeedDataApp.Data;
 

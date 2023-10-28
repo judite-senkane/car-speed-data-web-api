@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CarSpeedDataApp.Core.Models;
 
-namespace CarSpeedDataApp.Core.Services
+namespace CarSpeedDataApp.Core.Services;
+
+public interface ICarSpeedDataService<TCarSpeedData>
 {
-	internal interface ICarSpeedDataService
-	{
-	}
+	public IEnumerable<CarSpeedData> GetRange(DateTime? dateFrom, DateTime? dateTo, int? speed);
+
+	public IEnumerable<CarSpeedData> GetDay(DateTime date);
 }
