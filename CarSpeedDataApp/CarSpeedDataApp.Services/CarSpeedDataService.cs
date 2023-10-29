@@ -1,13 +1,14 @@
 ﻿using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
+using CarSpeedDataApp.Data;
 
 namespace CarSpeedDataApp.Services;
 
-public class CarSpeedDataService : ICarSpeedDataService<CarSpeedData>
+public class CarSpeedDataService : ICarSpeedDataService
 {
-	private ICarSpeedDataService<CarSpeedData> _context;
+	private readonly CarSpeedDataDbContext _context;
 
-	public CarSpeedDataService(ICarSpeedDataService<CarSpeedData> context)
+	public CarSpeedDataService(CarSpeedDataDbContext context)
 	{
 		_context = context;
 	}
@@ -19,5 +20,18 @@ public class CarSpeedDataService : ICarSpeedDataService<CarSpeedData>
 	public IEnumerable<CarSpeedData> GetDay(DateTime date)
 	{
 		throw new NotImplementedException();
+	}
+
+	public void Create(List<CarSpeedData> data)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void Create(CarSpeedData data)
+	{
+		{
+			_context.CarSpeedData.Add(data);
+			_context.SaveChanges();
+		}
 	}
 }

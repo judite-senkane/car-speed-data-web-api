@@ -1,5 +1,7 @@
 using CarSpeedDataApp.Core.Models;
+using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
+using CarSpeedDataApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarSpeedDataApp
@@ -19,6 +21,9 @@ namespace CarSpeedDataApp
 			builder.Services.AddDbContext<CarSpeedDataDbContext>(options =>
 				options.UseSqlServer(builder.Configuration
 					.GetConnectionString("car-speed-data")));
+			builder.Services.AddTransient<ICarSpeedDataService, CarSpeedDataService>();
+			var mapper = AutoMapperConfig.CreateMapper();
+			builder.Services.AddSingleton(mapper);
 
 			var app = builder.Build();
 
