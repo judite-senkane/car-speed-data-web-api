@@ -17,21 +17,21 @@ public class CarSpeedDataService : ICarSpeedDataService
 		throw new NotImplementedException();
 	}
 
-	public IEnumerable<CarSpeedData> GetDay(DateTime date)
+	public IEnumerable<int> GetDay(DateTime date)
 	{
 		throw new NotImplementedException();
 	}
 
-	public void Create(List<CarSpeedData> data)
+	public void CreateList(List<CarSpeedData> dataList)
 	{
-		throw new NotImplementedException();
-	}
-
-	public void Create(CarSpeedData data)
-	{
+		foreach (var item in dataList)
 		{
-			_context.CarSpeedData.Add(data);
-			_context.SaveChanges();
+			_context.Add(item);
 		}
+	}
+
+	public void SaveChanges()
+	{
+		_context.SaveChanges();
 	}
 }

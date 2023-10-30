@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarSpeedDataApp
+namespace CarSpeedDataApp.Core.Models
 {
 	public class CarSpeedDataRequest
 	{

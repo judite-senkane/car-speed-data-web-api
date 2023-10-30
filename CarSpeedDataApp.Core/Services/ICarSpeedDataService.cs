@@ -6,8 +6,10 @@ public interface ICarSpeedDataService
 {
 	public IEnumerable<CarSpeedData> GetRange(DateTime? dateFrom, DateTime? dateTo, int? speed);
 
-	public IEnumerable<CarSpeedData> GetDay(DateTime date);
+	public IEnumerable<int> GetDay(DateTime date);
 
-	public void Create (CarSpeedData data);
+	public void CreateList (List<CarSpeedData> dataList);
+
+	public void SaveChanges();
 
 }

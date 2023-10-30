@@ -13,6 +13,7 @@ public class AutoMapperConfig
 				.ForMember(a => a.Id,
 					opt =>
 						opt.Ignore());
+			cfg.CreateMap<CarSpeedData, CarSpeedDataRequest>();
 		});
 
 		// only during development, validate your mappings; remove it before release
