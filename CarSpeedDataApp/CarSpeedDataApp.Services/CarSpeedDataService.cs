@@ -24,14 +24,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 
 	public void CreateList(List<CarSpeedData> dataList)
 	{
-		foreach (var item in dataList)
-		{
-			_context.Add(item);
-		}
-	}
-
-	public void SaveChanges()
-	{
+		_context.AddRange(dataList);
 		_context.SaveChanges();
 	}
 }

@@ -22,60 +22,36 @@ namespace CarSpeedDataApp.Controllers
 		[HttpPost ("upload")]
 		public async Task<IActionResult> UploadFile(IFormFile file)
 		{
-			if (file == null || file.Length == 0)
-			{
-				return BadRequest("Invalid file.");
-			}
-
 			await using var stream = file.OpenReadStream();
 			using var reader = new StreamReader(stream);
 			var allData = await reader.ReadToEndAsync();
-			var rowSplit = allData.Split("\n");
+			var rowSplit = allData.Split("\n").Where(l => l.Length > 0).ToList();
 
-			List<CarSpeedDataRequest> allCarData = new List<CarSpeedDataRequest>();
+			List<CarSpeedData> allCarData = new List<CarSpeedData>();
+
+			var lastLine = rowSplit.Last();
 
 			foreach (var line in rowSplit)
 			{
-				while (line != null)
+				string[] columns = line.Split("\t");
+
+				var data = new CarSpeedData
 				{
-					string[] columns = line.Split(new char[] { ' ', '\t' });
+					DateAndTime = DateTime.Parse(columns[0]),
+					SpeedKmH = int.Parse(columns[1]),
+					LicenseNumber = columns[2],
+				};
 
-					if (columns.Length >= 4)
-					{
-						var data = new CarSpeedDataRequest
-						{
-							DateAndTime = DateTime.Parse(columns[0] + " " + columns[1]),
-							SpeedKmH = int.Parse(columns[2]),
-							LicenseNumber = columns[3],
-						};
+				allCarData.Add(data);
 
-						allCarData.Add(data);
-					}
-					else
-					{
-						return BadRequest("Incorrect file format");
-					}
+				if (allCarData.Count == 100 || line.Equals(lastLine))
+				{
+					_carSpeedDataService.CreateList(allCarData);
+					allCarData.Clear();
 				}
 			}
 
-			var lastItem = allCarData.Last();
-
-			foreach (CarSpeedDataRequest carData in allCarData)
-			{
-				var mappedData = _mapper.Map<CarSpeedData>(carData);
-				var mappedDataList = new List<CarSpeedData>();
-
-				mappedDataList.Add(mappedData);
-
-				if (mappedDataList.Count == 100 || carData.Equals(lastItem))
-				{
-					_carSpeedDataService.CreateList(mappedDataList);
-					mappedDataList.Clear();
-				}
-			}
-
-			_carSpeedDataService.SaveChanges();
-			return Created("file uploaded", "");
+			return Created("", "");
 		}
 	}
 }

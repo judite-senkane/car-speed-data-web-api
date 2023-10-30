@@ -9,7 +9,4 @@ public interface ICarSpeedDataService
 	public IEnumerable<int> GetDay(DateTime date);
 
 	public void CreateList (List<CarSpeedData> dataList);
-
-	public void SaveChanges();
-
 }
