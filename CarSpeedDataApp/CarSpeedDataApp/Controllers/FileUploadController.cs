@@ -10,13 +10,10 @@ namespace CarSpeedDataApp.Controllers
 	public class FileUploadController : ControllerBase
 	{
 		private readonly ICarSpeedDataService _carSpeedDataService;
-		private readonly IMapper _mapper;
-		//private static readonly object _controllerLock = new();
 
-		public FileUploadController(ICarSpeedDataService carSpeedDataService, IMapper mapper)
+		public FileUploadController(ICarSpeedDataService carSpeedDataService)
 		{
 			_carSpeedDataService = carSpeedDataService;
-			_mapper = mapper;
 		}
 
 		[HttpPost ("upload")]
