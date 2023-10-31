@@ -16,7 +16,8 @@ namespace CarSpeedDataApp.Controllers
 			_carSpeedDataService = carSpeedDataService;
 		}
 
-		[HttpPost ("upload")]
+		[Route("upload")]
+		[HttpPost]
 		public async Task<IActionResult> UploadFile(IFormFile file)
 		{
 			await using var stream = file.OpenReadStream();
@@ -40,14 +41,9 @@ namespace CarSpeedDataApp.Controllers
 				};
 
 				allCarData.Add(data);
-
-				if (allCarData.Count == 100 || line.Equals(lastLine))
-				{
-					_carSpeedDataService.CreateList(allCarData);
-					allCarData.Clear();
-				}
 			}
 
+			_carSpeedDataService.CreateList(allCarData);
 			return Created("", "");
 		}
 	}
