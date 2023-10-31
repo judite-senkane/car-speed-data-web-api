@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace CarSpeedDataApp.Core.Models
 
@@ -9,6 +10,7 @@ namespace CarSpeedDataApp.Core.Models
 
 		public DateTime DateAndTime { get; set; }
 
+		[JsonPropertyName("speed")]
 		public int SpeedKmH { get; set; }
 
 		[StringLength(50)]

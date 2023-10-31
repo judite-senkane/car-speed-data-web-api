@@ -27,6 +27,14 @@ namespace CarSpeedDataApp
 
 			var app = builder.Build();
 
+			app.UseCors(policyBuilder =>
+			{
+				policyBuilder
+					.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader();
+			});
+
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())
 			{

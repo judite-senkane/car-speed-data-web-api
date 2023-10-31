@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
+using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarSpeedDataApp.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("[controller]")]
 	[ApiController]
+
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class FileUploadController : ControllerBase
 	{
 		private readonly ICarSpeedDataService _carSpeedDataService;

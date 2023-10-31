@@ -1,9 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using CarSpeedDataApp.Core.Models;
+﻿using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace CarSpeedDataApp.Services;
 
