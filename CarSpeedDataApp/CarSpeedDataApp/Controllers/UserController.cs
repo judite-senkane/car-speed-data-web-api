@@ -14,7 +14,7 @@ namespace CarSpeedDataApp.Controllers
 			_carSeedDataService = carSpeedDataService;
 		}
 
-		[Route("day-speed-average")]
+		[Route("/day-speed-average")]
 		[HttpGet]
 		public IActionResult GetDayAverage(DateTime day)
 		{
@@ -22,13 +22,12 @@ namespace CarSpeedDataApp.Controllers
 			return Ok(result);
 		}
 
-		[Route("filter-data")]
+		[Route("/data")]
 		[HttpGet]
-		public IActionResult FilterData(DateTime? dateFrom, DateTime? dateTo, int? speed)
+		public IActionResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 		{
-			var result = _carSeedDataService.GetRange(dateFrom, dateTo, speed);
+			var result = _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
 			return Ok(result);
 		}
-
 	}
 }

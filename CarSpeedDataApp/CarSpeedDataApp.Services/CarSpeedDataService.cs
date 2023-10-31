@@ -10,23 +10,26 @@ namespace CarSpeedDataApp.Services;
 public class CarSpeedDataService : ICarSpeedDataService
 {
 	private readonly CarSpeedDataDbContext _context;
+	private const int pagePerView = 20;
 
 	public CarSpeedDataService(CarSpeedDataDbContext context)
 	{
 		_context = context;
 	}
-	public IEnumerable<CarSpeedData> GetRange(DateTime? dateFrom, DateTime? dateTo, int? speed)
+	public IEnumerable<CarSpeedData> GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 	{
+		if (page < 1) page = 1;
+
 		var dataQuery = _context.CarSpeedData.AsQueryable();
 
 		if (dateFrom != null)
 		{
-			dataQuery = dataQuery.Where(f => f.DateAndTime.Date <= dateFrom.Value.Date);
+			dataQuery = dataQuery.Where(f => f.DateAndTime.Date >= dateFrom.Value.Date);
 		}
 
 		if (dateTo != null)
 		{
-			dataQuery = dataQuery.Where(t => t.DateAndTime.Date >= dateTo.Value.Date);
+			dataQuery = dataQuery.Where(t => t.DateAndTime.Date <= dateTo.Value.Date);
 		}
 
 		if (speed != null)
@@ -34,7 +37,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 			dataQuery = dataQuery.Where(s => s.SpeedKmH >= speed.Value);
 		}
 
-		return dataQuery.ToList();
+		return dataQuery.Skip((page - 1) * pagePerView).Take(pagePerView).ToList();
 	}
 
 	public IEnumerable<double> GetDay(DateTime date)
