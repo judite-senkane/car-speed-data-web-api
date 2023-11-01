@@ -3,13 +3,6 @@ import axios, { AxiosResponse } from "axios";
 import { CarSpeedData } from "../Types/CarSpeedData";
 import { DataResult } from "../Types/DataResult";
 
-// async function fetchCarSpeedDataList(): Promise<CarSpeedData[]>{
-
-//   const response: AxiosResponse<CarSpeedData[]> = await axios.get<CarSpeedData[]>('https://localhost:5150/User/data', { params: {page} });
-//   const carSpeedDataList: CarSpeedData[] = response.data;
-//   return carSpeedDataList;
-// }
-
 function Home() {
   const [carSpeedDataList, setCarSpeedDataList] = useState<CarSpeedData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,13 +12,11 @@ function Home() {
   const [filterSpeed, setFilterSpeed] = useState(0);
 
   useEffect(() => {
-    // Fetch data when the component mounts
     fetchData();
   }, [currentPage]);
 
   const fetchData = async () => {
     try {
-      // Make an HTTP GET request using Axios
       const response: AxiosResponse<DataResult> = await axios.get<DataResult>(
         "http://localhost:5150/User/data",
         {
@@ -38,11 +29,9 @@ function Home() {
         }
       );
 
-      // Extract the data from the response and update the state
       setCarSpeedDataList(response.data.items);
       setTotalPages(response.data.totalPages);
     } catch (error: any) {
-      // Handle errors, log them, or show an error message
       console.error("Error fetching car speed data:", error.message);
     }
   };
@@ -66,7 +55,6 @@ function Home() {
   const handleSubmit = () => {
     fetchData();
   };
-  //fetchData();
   return (
     <div className="Home">
       <h1>Car Speed Data</h1>
