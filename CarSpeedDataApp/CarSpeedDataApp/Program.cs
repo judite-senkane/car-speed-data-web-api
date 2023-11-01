@@ -1,4 +1,3 @@
-using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
 using CarSpeedDataApp.Services;
