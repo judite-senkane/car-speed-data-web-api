@@ -27,6 +27,6 @@
 1. In Visual Studio Code, run ```npm install``` in the terminal
 1. Now start the Visual Studio Web Api project. Ignore the Swagger window that appears
 1. Start the frontend in Visual Studio Code by running ```npm start``` in the terminal
-1. Now you can navigate to UploadFile page and upload your first file with the data. I have a sample data in the repository.
+1. Now you can navigate to UploadFile page and upload your first file with the data. I have a sample data in the repository. The upload for the sample data should take 2-3 minutes. There will be a message with "File uploaded." once it is completed.
 1. Enjoy the website!
 
