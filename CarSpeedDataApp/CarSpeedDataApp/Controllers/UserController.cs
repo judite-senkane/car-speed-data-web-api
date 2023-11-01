@@ -30,6 +30,7 @@ namespace CarSpeedDataApp.Controllers
 		public IActionResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 		{
 			var result = _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
+
 			return Ok(result);
 		}
 	}

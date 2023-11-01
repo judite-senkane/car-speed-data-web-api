@@ -13,7 +13,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 	{
 		_context = context;
 	}
-	public IEnumerable<CarSpeedData> GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+	public DataResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 	{
 		if (page < 1) page = 1;
 
@@ -34,7 +34,13 @@ public class CarSpeedDataService : ICarSpeedDataService
 			dataQuery = dataQuery.Where(s => s.SpeedKmH >= speed.Value);
 		}
 
-		return dataQuery.Skip((page - 1) * pagePerView).Take(pagePerView).ToList();
+		var items =  dataQuery.Skip((page - 1) * pagePerView).Take(pagePerView).ToList();
+		var totalPages = (int)Math.Ceiling(dataQuery.Count() / (double)pagePerView);
+		return new DataResult
+		{
+			Items = items,
+			TotalPages = totalPages
+		};
 	}
 
 	public IEnumerable<double> GetDay(DateTime date)
@@ -44,7 +50,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 
 		for (int i = 0; i < 24; i++)
 		{
-			var averageSpeed = filteredData.Where(d => d.DateAndTime.Hour == i).Select(s => s.SpeedKmH).Average();
+			var averageSpeed = filteredData.Where(d => (int)d.DateAndTime.Hour == i).Select(s => s.SpeedKmH).Average();
 			result.Add(averageSpeed);
 		}
 

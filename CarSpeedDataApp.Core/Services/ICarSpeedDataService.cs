@@ -4,7 +4,7 @@ namespace CarSpeedDataApp.Core.Services;
 
 public interface ICarSpeedDataService
 {
-	public IEnumerable<CarSpeedData> GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed);
+	public DataResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed);
 
 	public IEnumerable<double> GetDay(DateTime date);
 

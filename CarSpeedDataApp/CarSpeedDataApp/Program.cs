@@ -22,8 +22,6 @@ namespace CarSpeedDataApp
 				options.UseSqlServer(builder.Configuration
 					.GetConnectionString("car-speed-data")));
 			builder.Services.AddTransient<ICarSpeedDataService, CarSpeedDataService>();
-			var mapper = AutoMapperConfig.CreateMapper();
-			builder.Services.AddSingleton(mapper);
 
 			var app = builder.Build();
 
