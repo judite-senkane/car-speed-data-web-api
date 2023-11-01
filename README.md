@@ -5,9 +5,9 @@
 
 <p>My name: Judīte Senkāne</p>
 
-###Step By Step Guide
+### Step By Step Guide
 1. Clone this project and open the folders on your computer
-1. Open the [CarSpeedDataApp.sln](https://github.com/judite-senkane/car-speed-data-web-api/blob/car-speed-data/CarSpeedDataApp/CarSpeedDataApp.sln) file in Visueal Studio
+1. Open the [CarSpeedDataApp.sln](https://github.com/judite-senkane/car-speed-data-web-api/blob/car-speed-data/CarSpeedDataApp/CarSpeedDataApp.sln) file in Visual Studio
 1. Open the [car-speed-data-app](https://github.com/judite-senkane/car-speed-data-web-api/tree/car-speed-data) in your Visual Studio Code
 1. Make sure you have MS SQL Server downloaded on your computer
 1. In Visual Studio, make sure that these packages are installed: 
