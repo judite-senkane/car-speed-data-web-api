@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using CarSpeedDataApp.Core.Models;
+﻿using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
 using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace CarSpeedDataApp.Controllers
 {
-	[Route("[controller]")]
 	[ApiController]
+	[Route("[controller]")]
 
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class FileUploadController : ControllerBase
@@ -22,11 +22,20 @@ namespace CarSpeedDataApp.Controllers
 		[Route("upload")]
 		[HttpPost]
 		public async Task<IActionResult> UploadFile(IFormFile file)
-		{
-			await using var stream = file.OpenReadStream();
-			using var reader = new StreamReader(stream);
-			var allData = await reader.ReadToEndAsync();
-			var rowSplit = allData.Split("\n").Where(l => l.Length > 0).ToList();
+	{
+			string uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles");
+			Directory.CreateDirectory(uploadDirectory);
+			string path = Path.Combine(uploadDirectory, file.FileName);
+
+			using (Stream stream = file.OpenReadStream())
+			{
+				using (FileStream fileStream = new FileStream(path, FileMode.Create))
+				{
+					await stream.CopyToAsync(fileStream);
+				}
+			}
+
+			var rowSplit = System.IO.File.ReadAllLines(path).ToList();
 
 			List<CarSpeedData> allCarData = new List<CarSpeedData>();
 
@@ -45,7 +54,6 @@ namespace CarSpeedDataApp.Controllers
 
 				allCarData.Add(data);
 			}
-
 			_carSpeedDataService.CreateList(allCarData);
 			return Created("", "");
 		}

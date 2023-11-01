@@ -43,7 +43,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 		};
 	}
 
-	public IEnumerable<double> GetDay(DateTime date)
+	public List<double> GetDay(DateTime date)
 	{
 		var filteredData = _context.CarSpeedData.Where(d => d.DateAndTime.Date == date.Date);
 		List<double> result = new List<double>();

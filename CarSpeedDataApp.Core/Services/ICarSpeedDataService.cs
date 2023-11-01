@@ -6,7 +6,7 @@ public interface ICarSpeedDataService
 {
 	public DataResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed);
 
-	public IEnumerable<double> GetDay(DateTime date);
+	public List <double> GetDay(DateTime date);
 
 	public void CreateList (List<CarSpeedData> dataList);
 }

@@ -21,7 +21,11 @@ namespace CarSpeedDataApp.Controllers
 		[HttpGet]
 		public IActionResult GetDayAverage(DateTime day)
 		{
-			var result = _carSeedDataService.GetDay(day);
+			var data = _carSeedDataService.GetDay(day);
+			var result = new AverageSpeedResponse
+			{
+				AverageSpeedData = data
+			};
 			return Ok(result);
 		}
 

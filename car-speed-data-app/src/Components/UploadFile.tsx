@@ -1,25 +1,27 @@
-import { useState, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
-
+import { useState } from "react";
+import axios from "axios";
 
 function UploadFile() {
-  const [addedFile, setAddedFile] = useState(null);
+  const [addedFile, setAddedFile] = useState<File | string>("");
   const [result, setResult] = useState("");
-  const [submit, setSubmit] = useState(false);
-  
-   useEffect(() => { 
-    axios.get("http://localhost:5150/FileUpload/upload", {params: {file: addedFile}})
-        .then(() => setResult("File uploaded."))
-        }, [submit === true]);
+
+  const handleUpload = async () => {
+    const formData = new FormData();
+    formData.append("file", addedFile);
+    axios
+      .post("http://localhost:5150/FileUpload/upload", formData, {
+  headers: {
+    "Content-Type": "multipart/form-data",
+  }}).then(() => setResult("File uploaded."));
+  };
 
   const handleAddedFile = (event: any) => {
-    setAddedFile(event.target.value)
-  }
+    setAddedFile(event.target.files[0]);
+  };
 
-    const handleSubmit = () => {
-      setSubmit(true);
-    };
-
+  const handleSubmit = () => {
+    handleUpload();
+  };
 
   return (
     <div className="UploadFile">
@@ -31,7 +33,7 @@ function UploadFile() {
       <button
         className="btn btn-success btn-sm"
         type="submit"
-        onClick={handleSubmit}
+        onClick={() => handleSubmit()}
       >
         Upload
       </button>
