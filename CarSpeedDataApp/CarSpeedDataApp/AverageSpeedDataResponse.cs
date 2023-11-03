@@ -2,7 +2,7 @@
 
 namespace CarSpeedDataApp
 {
-	public class AverageSpeedResponse
+	public class AverageSpeedDataResponse
 	{
 		[JsonPropertyName("speed")]
 		public List<double> AverageSpeedData { get; set; }

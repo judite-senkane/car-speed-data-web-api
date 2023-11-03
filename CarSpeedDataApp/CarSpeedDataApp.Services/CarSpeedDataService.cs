@@ -6,16 +6,17 @@ namespace CarSpeedDataApp.Services;
 
 public class CarSpeedDataService : ICarSpeedDataService
 {
-	private readonly CarSpeedDataDbContext _context;
+	private readonly ICarSpeedDataDbContext _context;
 	private const int pagePerView = 20;
 
-	public CarSpeedDataService(CarSpeedDataDbContext context)
+	public CarSpeedDataService(ICarSpeedDataDbContext context)
 	{
 		_context = context;
 	}
-	public DataResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+
+	public DataResult GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 	{
-		if (page < 1) page = 1;
+		if (page < 1 || page == null) page = 1;
 
 		var dataQuery = _context.CarSpeedData.AsQueryable();
 
@@ -34,8 +35,9 @@ public class CarSpeedDataService : ICarSpeedDataService
 			dataQuery = dataQuery.Where(s => s.SpeedKmH >= speed.Value);
 		}
 
-		var items =  dataQuery.Skip((page - 1) * pagePerView).Take(pagePerView).ToList();
+		var items =  dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToList();
 		var totalPages = (int)Math.Ceiling(dataQuery.Count() / (double)pagePerView);
+
 		return new DataResult
 		{
 			Items = items,
@@ -50,13 +52,21 @@ public class CarSpeedDataService : ICarSpeedDataService
 
 		for (int i = 0; i < 24; i++)
 		{
-			var averageSpeed = filteredData.Where(d => (int)d.DateAndTime.Hour == i).Select(s => s.SpeedKmH).Average();
-			result.Add(averageSpeed);
+			var speedsForHour = filteredData.Where(d => (int)d.DateAndTime.Hour == i).Select(s => s.SpeedKmH).ToList();
+
+			if (speedsForHour.Any())
+			{
+				var averageSpeed = speedsForHour.Average();
+				result.Add(averageSpeed);
+			}
+			else
+			{
+				result.Add(0);
+			}
 		}
 
 		return result;
 	}
-
 	public void CreateList(List<CarSpeedData> dataList)
 	{
 		_context.CarSpeedData.AddRange(dataList);

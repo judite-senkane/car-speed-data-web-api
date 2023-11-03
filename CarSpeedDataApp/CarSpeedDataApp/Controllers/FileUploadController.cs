@@ -21,7 +21,12 @@ namespace CarSpeedDataApp.Controllers
 		[Route("upload")]
 		[HttpPost]
 		public async Task<IActionResult> UploadFile(IFormFile file)
-	{
+		{
+			if (file == null)
+			{
+				return BadRequest("Invalid file upload");
+			}
+
 			string uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFiles");
 			Directory.CreateDirectory(uploadDirectory);
 			string path = Path.Combine(uploadDirectory, file.FileName);
@@ -40,19 +45,27 @@ namespace CarSpeedDataApp.Controllers
 
 			var lastLine = rowSplit.Last();
 
-			foreach (var line in rowSplit)
+			try
 			{
-				string[] columns = line.Split("\t");
-
-				var data = new CarSpeedData
+				foreach (var line in rowSplit)
 				{
-					DateAndTime = DateTime.Parse(columns[0]),
-					SpeedKmH = int.Parse(columns[1]),
-					LicenseNumber = columns[2],
-				};
+					string[] columns = line.Split("\t");
 
-				allCarData.Add(data);
+					var data = new CarSpeedData
+					{
+						DateAndTime = DateTime.Parse(columns[0]),
+						SpeedKmH = int.Parse(columns[1]),
+						LicenseNumber = columns[2],
+					};
+
+					allCarData.Add(data);
+				}
 			}
+			catch (Exception ex)
+			{
+				return BadRequest("File data is not in the correct format");
+			}
+			
 			_carSpeedDataService.CreateList(allCarData);
 			return Created("", "");
 		}

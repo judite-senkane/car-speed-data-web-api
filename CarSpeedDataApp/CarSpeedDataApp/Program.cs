@@ -21,6 +21,7 @@ namespace CarSpeedDataApp
 				options.UseSqlServer(builder.Configuration
 					.GetConnectionString("car-speed-data")));
 			builder.Services.AddTransient<ICarSpeedDataService, CarSpeedDataService>();
+			builder.Services.AddTransient<ICarSpeedDataDbContext, CarSpeedDataDbContext>();
 
 			var app = builder.Build();
 

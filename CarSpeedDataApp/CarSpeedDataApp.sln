@@ -5,11 +5,17 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp", "CarSpeedDataApp\CarSpeedDataApp.csproj", "{54AC336A-0533-48EF-B910-EA9683E450D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataApp.Core", "..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj", "{701B5E6C-9AAA-4763-A710-341030B5BB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Core", "..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj", "{701B5E6C-9AAA-4763-A710-341030B5BB76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataApp.Data", "CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj", "{5D1D53F2-EA24-4198-8DD0-53EEAC7A1ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Data", "CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj", "{5D1D53F2-EA24-4198-8DD0-53EEAC7A1ED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataApp.Services", "CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj", "{45411D57-440B-4DB7-84E7-2D39B445B29C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Services", "CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj", "{45411D57-440B-4DB7-84E7-2D39B445B29C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Tests", "CarSpeedDataApp.Testss\CarSpeedDataApp.Tests.csproj", "{31C8D9CC-EBEB-4385-BB99-8E2B8A90E1FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataApp.Core.Tests", "CarSpeedDataApp.Core.Tests\CarSpeedDataApp.Core.Tests.csproj", "{720AEB6A-F91D-4E89-8BD3-BFA15C0E82A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataApp.Services.Tests", "CarSpeedDataApp.Services.Tests\CarSpeedDataApp.Services.Tests.csproj", "{7737BDD8-CF87-4B38-A132-8D885CAA743C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{45411D57-440B-4DB7-84E7-2D39B445B29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45411D57-440B-4DB7-84E7-2D39B445B29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45411D57-440B-4DB7-84E7-2D39B445B29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C8D9CC-EBEB-4385-BB99-8E2B8A90E1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C8D9CC-EBEB-4385-BB99-8E2B8A90E1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C8D9CC-EBEB-4385-BB99-8E2B8A90E1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C8D9CC-EBEB-4385-BB99-8E2B8A90E1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{720AEB6A-F91D-4E89-8BD3-BFA15C0E82A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{720AEB6A-F91D-4E89-8BD3-BFA15C0E82A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{720AEB6A-F91D-4E89-8BD3-BFA15C0E82A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{720AEB6A-F91D-4E89-8BD3-BFA15C0E82A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

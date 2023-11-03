@@ -22,7 +22,9 @@ namespace CarSpeedDataApp.Controllers
 		public IActionResult GetDayAverage(DateTime day)
 		{
 			var data = _carSeedDataService.GetDay(day);
-			var result = new AverageSpeedResponse
+			if(data == null) return NotFound();
+
+			var result = new AverageSpeedDataResponse
 			{
 				AverageSpeedData = data
 			};
@@ -31,9 +33,10 @@ namespace CarSpeedDataApp.Controllers
 
 		[Route("data")]
 		[HttpGet]
-		public IActionResult GetData(int page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+		public IActionResult GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 		{
 			var result = _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
+			if(result == null) return NotFound();
 
 			return Ok(result);
 		}
