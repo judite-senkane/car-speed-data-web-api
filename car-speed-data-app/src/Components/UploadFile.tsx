@@ -6,13 +6,16 @@ function UploadFile() {
   const [result, setResult] = useState("");
 
   const handleUpload = async () => {
+    setResult("Loading...");
     const formData = new FormData();
     formData.append("file", addedFile);
     axios
       .post("http://localhost:5150/FileUpload/upload", formData, {
-  headers: {
-    "Content-Type": "multipart/form-data",
-  }}).then(() => setResult("File uploaded."));
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => setResult("File uploaded."));
   };
 
   const handleAddedFile = (event: any) => {
