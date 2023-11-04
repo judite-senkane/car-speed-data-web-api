@@ -3,6 +3,7 @@ import NavBar from "./Components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ViewGraph from "./Components/ViewGraph";
 import UploadFile from "./Components/UploadFile";
+import "./App.css";
 
 function App() {
   return (

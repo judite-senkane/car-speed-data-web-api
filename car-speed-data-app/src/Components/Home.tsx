@@ -13,7 +13,7 @@ function Home() {
   const [filterSpeed, setFilterSpeed] = useState(0);
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, [currentPage]);
 
   const fetchData = async () => {
@@ -119,7 +119,7 @@ function Home() {
           ))}
         </tbody>
       </table>
-      <div>
+      <div className="d-flex justify-content-center m-3">
         <button
           className="btn"
           onClick={() => handlePageChange(currentPage - 1)}
@@ -127,7 +127,7 @@ function Home() {
         >
           Previous Page
         </button>
-        <span>
+        <span className="m-2">
           {" "}
           Page {currentPage} of {totalPages}{" "}
         </span>

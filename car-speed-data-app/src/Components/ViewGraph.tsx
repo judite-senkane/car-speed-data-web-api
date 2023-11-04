@@ -55,7 +55,7 @@ function ViewGraph() {
 
   return (
     <div className="ViewGraph text-center">
-      <h2 className="p-2">View Speed Graph</h2>
+      <h2 className="p-4">View Speed Graph</h2>
       <input
         type="date"
         placeholder="Date from"
