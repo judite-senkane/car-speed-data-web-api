@@ -17,7 +17,7 @@ namespace CarSpeedDataApp.Controllers
 
 		[Route("clear")]
 		[HttpPost]
-		public IActionResult ClearFlights()
+		public IActionResult ClearData()
 		{
 			_carSpeedDataService.ClearDatabase();
 			return Ok();

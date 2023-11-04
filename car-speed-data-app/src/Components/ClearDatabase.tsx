@@ -5,16 +5,17 @@ function ClearDatabase() {
   const [result, setResult] = useState("");
   const clearData = async () => {
     setResult("Clearing...");
-  try {
-         await axios.post(
-        "http://localhost:5150/Cleanup/clear")
+    try {
+      await axios
+        .post("http://localhost:5150/Cleanup/clear")
         .then(() => setResult("Database has been cleared"))
+        .then(() => window.location.reload());
     } catch (error: any) {
       console.error("Error clearing database", error.message);
     }
   };
 
-  const handleSubmit = () => clearData(); 
+  const handleSubmit = () => clearData();
 
   return (
     <div className="ClearDatabase">
@@ -27,7 +28,7 @@ function ClearDatabase() {
       </button>
       <p className="p-2">{result}</p>
     </div>
-  )
+  );
 }
 
 export default ClearDatabase;
