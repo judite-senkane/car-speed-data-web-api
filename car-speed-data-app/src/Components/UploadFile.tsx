@@ -28,13 +28,13 @@ function UploadFile() {
 
   return (
     <div className="UploadFile">
-      <h3>File Upload</h3>
-      <p>{result}</p>
-      <label className="btn btn-default p-0">
+      <h3 className="p-3">File Upload</h3>
+      <p className="ps-3">{result}</p>
+      <label className="p-3 btn btn-default p-0">
         <input type="file" onChange={handleAddedFile} />
       </label>
       <button
-        className="btn btn-success btn-sm"
+        className="pe-3 ps-3 btn btn-success btn-sm"
         type="submit"
         onClick={() => handleSubmit()}
       >

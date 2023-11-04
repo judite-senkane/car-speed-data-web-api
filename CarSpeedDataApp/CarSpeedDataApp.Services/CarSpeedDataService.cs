@@ -72,4 +72,10 @@ public class CarSpeedDataService : ICarSpeedDataService
 		_context.CarSpeedData.AddRange(dataList);
 		_context.SaveChanges();
 	}
+
+	public void ClearDatabase()
+	{
+		_context.CarSpeedData.RemoveRange(_context.CarSpeedData);
+		_context.SaveChanges();
+	}
 }

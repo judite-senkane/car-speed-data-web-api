@@ -54,8 +54,8 @@ function ViewGraph() {
   };
 
   return (
-    <div className="ViewGraph">
-      <h2>View Speed Graph</h2>
+    <div className="ViewGraph text-center">
+      <h2 className="p-2">View Speed Graph</h2>
       <input
         type="date"
         placeholder="Date from"
@@ -66,7 +66,7 @@ function ViewGraph() {
         Submit
       </button>
       <div className="row">
-        <div className="mixed-chart">
+        <div className="d-flex justify-content-center mixed-chart">
           <Chart
             options={state.options}
             series={state.series}

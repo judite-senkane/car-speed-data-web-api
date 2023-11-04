@@ -9,4 +9,5 @@ public interface ICarSpeedDataService
 	public List <double> GetDay(DateTime date);
 
 	public void CreateList (List<CarSpeedData> dataList);
+	public void ClearDatabase();
 }

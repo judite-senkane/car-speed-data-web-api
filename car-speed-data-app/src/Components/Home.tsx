@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import { CarSpeedData } from "../Types/CarSpeedData";
 import { DataResult } from "../Types/DataResult";
+import ClearDatabase from "./ClearDatabase";
 
 function Home() {
   const [carSpeedDataList, setCarSpeedDataList] = useState<CarSpeedData[]>([]);
@@ -57,41 +58,49 @@ function Home() {
   };
   return (
     <div className="Home">
-      <h1>Car Speed Data</h1>
-      <label htmlFor="date-from" className="label">
-        Date From
-      </label>
-      <input
-        id="date-from"
-        type="date"
-        placeholder="Date from"
-        value={filterDateFrom ? filterDateFrom : ""}
-        onChange={handleFilterDateFromChange}
-      />
-      <label htmlFor="date-to" className="label">
-        Date To
-      </label>
-      <input
-        id="date-to"
-        type="date"
-        placeholder="Date to"
-        value={filterDateTo ? filterDateTo : ""}
-        onChange={handleFilterDateToChange}
-      />
+      <h1 className="text-center p-4">Car Speed Data</h1>
+      <div className="p-3 d-flex flex-now justify-content-between">
+        <div>
+          <label htmlFor="date-from" className="p-2 label">
+            Date From
+          </label>
+          <input
+            id="date-from"
+            type="date"
+            placeholder="Date from"
+            value={filterDateFrom ? filterDateFrom : ""}
+            onChange={handleFilterDateFromChange}
+          />
+          <label htmlFor="date-to" className="p-2 label">
+            Date To
+          </label>
+          <input
+            id="date-to"
+            type="date"
+            placeholder="Date to"
+            value={filterDateTo ? filterDateTo : ""}
+            onChange={handleFilterDateToChange}
+          />
 
-      <label htmlFor="speed" className="label">
-        Speed
-      </label>
-      <input
-        id="speed"
-        type="number"
-        placeholder="Speed"
-        value={filterSpeed}
-        onChange={handleFilterSpeedChange}
-      />
-      <button className="btn" onClick={() => handleSubmit()}>
-        Apply filters
-      </button>
+          <label htmlFor="speed" className="p-2 label">
+            Speed
+          </label>
+          <input
+            id="speed"
+            type="number"
+            placeholder="Speed"
+            value={filterSpeed}
+            onChange={handleFilterSpeedChange}
+          />
+          <button
+            className="ps-2 pe-2 ms-4 btn btn-success"
+            onClick={() => handleSubmit()}
+          >
+            Apply filters
+          </button>
+        </div>
+        <ClearDatabase />
+      </div>
       <table className="table table-striped" aria-labelledby="tableLabel">
         <thead>
           <tr>
