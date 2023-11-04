@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Core.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSpeedDataApp.Services.Tests", "CarSpeedDataApp.Services.Tests\CarSpeedDataApp.Services.Tests.csproj", "{7737BDD8-CF87-4B38-A132-8D885CAA743C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSpeedDataAppProjectLaunch", "CarSpeedDataAppProjectLaunch\CarSpeedDataAppProjectLaunch.csproj", "{76A99078-2D82-4BC3-BA76-FFCE5DE158D2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7737BDD8-CF87-4B38-A132-8D885CAA743C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76A99078-2D82-4BC3-BA76-FFCE5DE158D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76A99078-2D82-4BC3-BA76-FFCE5DE158D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76A99078-2D82-4BC3-BA76-FFCE5DE158D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76A99078-2D82-4BC3-BA76-FFCE5DE158D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
