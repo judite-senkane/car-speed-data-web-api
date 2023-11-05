@@ -39,7 +39,7 @@ namespace CarSpeedDataApp.Services.Tests
 			var result = _carSpeedDataService.GetData(null, null, null, null);
 
 			//Assert
-			result.Should().BeOfType<DataResult>();
+			result.Should().BeOfType<PagedCarSpeedData>();
 			result.Items.Should().HaveCount(2);
 			result.TotalPages.Should().Be(1);
 
@@ -61,7 +61,7 @@ namespace CarSpeedDataApp.Services.Tests
 			var result = _carSpeedDataService.GetData(null, searchDateFrom, null, speed);
 
 			//Assert
-			result.Should().BeOfType<DataResult>();
+			result.Should().BeOfType<PagedCarSpeedData>();
 			result.Items.Should().HaveCount(1);
 			result.TotalPages.Should().Be(1);
 

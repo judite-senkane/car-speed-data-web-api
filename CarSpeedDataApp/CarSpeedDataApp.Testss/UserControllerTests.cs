@@ -15,7 +15,7 @@ namespace CarSpeedDataApp.Tests
 		private static readonly CarSpeedData _carSpeedData = new CarSpeedData()
 			{ DateAndTime = new DateTime(20, 08, 01, 00, 00, 01), Id = 1, LicenseNumber = "P9S56K", SpeedKmH = 70 };
 
-		private static readonly DataResult _dataResult = new DataResult()
+		private static readonly PagedCarSpeedData PagedCarSpeedData = new PagedCarSpeedData()
 			{ Items = new List<CarSpeedData>() { _carSpeedData }, TotalPages = 1 };
 		private readonly DateTime _day = new DateTime(2020,08,01);
 		private UserController _userController;
@@ -64,7 +64,7 @@ namespace CarSpeedDataApp.Tests
 		public void GetData_WithNoFilters_OkResponseReceived()
 		{
 			//Arrange
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(null, null, null, null)).Returns(response);
 
 			//Act
@@ -73,7 +73,7 @@ namespace CarSpeedDataApp.Tests
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
 			var okObjectResult = result.Should().BeOfType<OkObjectResult>().Subject;
-			var responseData = okObjectResult.Value.Should().BeOfType<DataResult>();
+			var responseData = okObjectResult.Value.Should().BeOfType<PagedCarSpeedData>();
 		}
 
 		[TestMethod]
@@ -81,7 +81,7 @@ namespace CarSpeedDataApp.Tests
 		{
 			//Arrange
 			var page = 1;
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(page, null, null, null)).Returns(response);
 
 			//Act
@@ -90,7 +90,7 @@ namespace CarSpeedDataApp.Tests
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
 			var okObjectResult = result.Should().BeOfType<OkObjectResult>().Subject;
-			var responseData = okObjectResult.Value.Should().BeOfType<DataResult>();
+			var responseData = okObjectResult.Value.Should().BeOfType<PagedCarSpeedData>();
 		}
 
 		[TestMethod]
@@ -99,7 +99,7 @@ namespace CarSpeedDataApp.Tests
 			//Arrange
 			var page = 1;
 			var dateFrom = new DateTime(2020, 08, 01);
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(page, dateFrom, null, null)).Returns(response);
 
 			//Act
@@ -108,7 +108,7 @@ namespace CarSpeedDataApp.Tests
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
 			var okObjectResult = result.Should().BeOfType<OkObjectResult>().Subject;
-			var responseData = okObjectResult.Value.Should().BeOfType<DataResult>();
+			var responseData = okObjectResult.Value.Should().BeOfType<PagedCarSpeedData>();
 		}
 
 		[TestMethod]
@@ -118,7 +118,7 @@ namespace CarSpeedDataApp.Tests
 			var page = 1;
 			var dateFrom = new DateTime(2020, 08, 01);
 			var dateTo = dateFrom;
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(1, dateFrom, dateTo, null)).Returns(response);
 
 			//Act
@@ -127,7 +127,7 @@ namespace CarSpeedDataApp.Tests
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
 			var okObjectResult = result.Should().BeOfType<OkObjectResult>().Subject;
-			var responseData = okObjectResult.Value.Should().BeOfType<DataResult>();
+			var responseData = okObjectResult.Value.Should().BeOfType<PagedCarSpeedData>();
 		}
 
 		[TestMethod]
@@ -138,7 +138,7 @@ namespace CarSpeedDataApp.Tests
 			var dateFrom = new DateTime(2020, 08, 01);
 			var dateTo = dateFrom;
 			var speed = 70;
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(1, dateFrom, dateTo, speed)).Returns(response);
 
 			//Act
@@ -147,7 +147,7 @@ namespace CarSpeedDataApp.Tests
 			//Assert
 			result.Should().BeOfType<OkObjectResult>();
 			var okObjectResult = result.Should().BeOfType<OkObjectResult>().Subject;
-			var responseData = okObjectResult.Value.Should().BeOfType<DataResult>();
+			var responseData = okObjectResult.Value.Should().BeOfType<PagedCarSpeedData>();
 		}
 
 		[TestMethod]
@@ -158,7 +158,7 @@ namespace CarSpeedDataApp.Tests
 			var dateFrom = new DateTime(2020, 08, 01);
 			var dateTo = dateFrom;
 			var speed = 70;
-			var response = _dataResult;
+			var response = PagedCarSpeedData;
 			_mocker.GetMock<ICarSpeedDataService>().Setup(d => d.GetData(1, dateFrom, dateTo, speed)).Returns(response);
 
 			//Act

@@ -62,7 +62,7 @@ function ViewGraph() {
         value={filterDate ? filterDate : ""}
         onChange={handleFilterDateChange}
       />
-      <button className="btn" onClick={() => handleSubmit()}>
+      <button className="m-4 btn btn-success" onClick={() => handleSubmit()}>
         Submit
       </button>
       <div className="row">

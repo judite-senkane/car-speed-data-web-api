@@ -24,7 +24,7 @@ function ClearDatabase() {
         type="submit"
         onClick={() => handleSubmit()}
       >
-        ClearDatabase
+        Clear Database
       </button>
       <p className="p-2">{result}</p>
     </div>

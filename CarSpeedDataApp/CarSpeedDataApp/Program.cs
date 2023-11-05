@@ -2,6 +2,7 @@ using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
 using CarSpeedDataApp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CarSpeedDataApp
 {
@@ -22,6 +23,7 @@ namespace CarSpeedDataApp
 					.GetConnectionString("car-speed-data")));
 			builder.Services.AddTransient<ICarSpeedDataService, CarSpeedDataService>();
 			builder.Services.AddTransient<ICarSpeedDataDbContext, CarSpeedDataDbContext>();
+			builder.Services.AddTransient<IFileProcessingService, FileProcessingService>();
 
 			var app = builder.Build();
 

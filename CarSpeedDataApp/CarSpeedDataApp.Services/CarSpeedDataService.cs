@@ -14,7 +14,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 		_context = context;
 	}
 
-	public DataResult GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+	public PagedCarSpeedData GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 	{
 		if (page < 1 || page == null) page = 1;
 
@@ -38,7 +38,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 		var items =  dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToList();
 		var totalPages = (int)Math.Ceiling(dataQuery.Count() / (double)pagePerView);
 
-		return new DataResult
+		return new PagedCarSpeedData
 		{
 			Items = items,
 			TotalPages = totalPages
