@@ -19,7 +19,7 @@ function Home() {
   const fetchData = async () => {
     try {
       const response: AxiosResponse<DataResult> = await axios.get<DataResult>(
-        "http://localhost:5150/User/data",
+        "http://localhost:5000/User/data",
         {
           params: {
             page: currentPage,

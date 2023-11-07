@@ -7,7 +7,7 @@ function ClearDatabase() {
     setResult("Clearing...");
     try {
       await axios
-        .post("http://localhost:5150/Cleanup/clear")
+        .post("http://localhost:5000/Cleanup/clear")
         .then(() => setResult("Database has been cleared"))
         .then(() => window.location.reload());
     } catch (error: any) {

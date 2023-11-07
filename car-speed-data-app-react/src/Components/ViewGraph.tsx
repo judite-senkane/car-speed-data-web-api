@@ -11,7 +11,7 @@ function ViewGraph() {
     try {
       const response: AxiosResponse<AverageSpeedResult> =
         await axios.get<AverageSpeedResult>(
-          "http://localhost:5150/User/day-speed-average",
+          "http://localhost:5000/User/day-speed-average",
           {
             params: {
               day: filterDate,
