@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UploadedFiles\**" />
+    <Content Remove="UploadedFiles\**" />
+    <EmbeddedResource Remove="UploadedFiles\**" />
+    <None Remove="UploadedFiles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.24">
       <PrivateAssets>all</PrivateAssets>
@@ -21,10 +28,6 @@
     <ProjectReference Include="..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UploadedFiles\" />
   </ItemGroup>
 
 </Project>

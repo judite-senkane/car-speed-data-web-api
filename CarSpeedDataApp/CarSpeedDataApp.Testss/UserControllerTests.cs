@@ -1,13 +1,14 @@
 ﻿using CarSpeedDataApp.Controllers;
 using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
+using CarSpeedDataApp.Models;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq.AutoMock;
 
 namespace CarSpeedDataApp.Tests
 {
-	[TestClass]
+    [TestClass]
 	public class UserControllerTests
 	{
 		private static readonly List<double> _dummyData = new() { 34.56, 45.32, 45.76, 76.54, 90.32, 43.69 };

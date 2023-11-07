@@ -1,8 +1,9 @@
+using CarSpeedDataApp.Models;
 using FluentAssertions;
 
 namespace CarSpeedDataApp.Tests
 {
-	[TestClass]
+    [TestClass]
 	public class AverageSpeedDataResponseTests
 	{
 		private static readonly List<double> _dummyData = new() { 34.56, 45.32, 45.76, 76.54, 90.32, 43.69 };
