@@ -54,7 +54,7 @@ namespace CarSpeedDataApp.Services.Tests
 			CreateInstanceOfDatabase();
 			AddData();
 
-			var searchDateFrom = new DateTime(2021,01,01);
+			var searchDateFrom = new DateTime(2021, 01, 01);
 			var speed = 50;
 
 			//Act
@@ -126,7 +126,7 @@ namespace CarSpeedDataApp.Services.Tests
 		private void CreateInstanceOfDatabase()
 		{
 			var options = new DbContextOptionsBuilder<CarSpeedDataDbContext>()
-				.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()) 
+				.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
 				.Options;
 
 			_carSpeedDataContext = new TestCarSpeedDataDbContext(options);

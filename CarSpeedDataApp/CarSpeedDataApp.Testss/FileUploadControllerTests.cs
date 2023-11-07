@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Moq.AutoMock;
-using System.Reflection;
 
 namespace CarSpeedDataApp.Tests
 {
@@ -50,7 +49,7 @@ namespace CarSpeedDataApp.Tests
 			};
 
 			formFileMock.Setup(f => f.FileName).Returns("test.txt");
-			_fileProcessingServiceMock.Setup(p => p.ExtractDataFromFile(It.IsAny<IFormFile>())).Returns(dataList);
+			_fileProcessingServiceMock.Setup(p => p.ExtractDataFromFile(It.IsAny<IFormFile>())).ReturnsAsync(dataList);
 
 			// Act
 			var result = await _fileUploadController.UploadFile(formFileMock.Object);

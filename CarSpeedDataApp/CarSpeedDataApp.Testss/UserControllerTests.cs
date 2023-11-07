@@ -13,11 +13,11 @@ namespace CarSpeedDataApp.Tests
 		private static readonly List<double> _dummyData = new() { 34.56, 45.32, 45.76, 76.54, 90.32, 43.69 };
 
 		private static readonly CarSpeedData _carSpeedData = new CarSpeedData()
-			{ DateAndTime = new DateTime(20, 08, 01, 00, 00, 01), Id = 1, LicenseNumber = "P9S56K", SpeedKmH = 70 };
+		{ DateAndTime = new DateTime(20, 08, 01, 00, 00, 01), Id = 1, LicenseNumber = "P9S56K", SpeedKmH = 70 };
 
 		private static readonly PagedCarSpeedData PagedCarSpeedData = new PagedCarSpeedData()
-			{ Items = new List<CarSpeedData>() { _carSpeedData }, TotalPages = 1 };
-		private readonly DateTime _day = new DateTime(2020,08,01);
+		{ Items = new List<CarSpeedData>() { _carSpeedData }, TotalPages = 1 };
+		private readonly DateTime _day = new DateTime(2020, 08, 01);
 		private UserController _userController;
 		private AutoMocker _mocker;
 

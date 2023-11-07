@@ -12,17 +12,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Numind.AspNetCore.SpaServices.Extensions" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
+    <ProjectReference Include="..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UploadedFIles\" />
   </ItemGroup>
 
 </Project>

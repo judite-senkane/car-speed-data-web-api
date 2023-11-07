@@ -1,5 +1,4 @@
 ﻿using CarSpeedDataApp.Core.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarSpeedDataApp.Controllers

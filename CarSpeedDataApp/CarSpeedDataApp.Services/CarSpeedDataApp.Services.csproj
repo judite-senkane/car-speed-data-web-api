@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
+    <ProjectReference Include="..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj" />
   </ItemGroup>
 

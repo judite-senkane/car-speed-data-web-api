@@ -25,7 +25,7 @@ namespace CarSpeedDataApp.Services.Tests
 		}
 
 		[TestMethod]
-		public void ExtractDataFromFile_WithValidFile_ListWithCorrectItemsReturned()
+		public async Task ExtractDataFromFile_WithValidFile_ListWithCorrectItemsReturned()
 		{
 			//Arrange
 			var formFileMock = _mocker.GetMock<IFormFile>();
@@ -37,7 +37,7 @@ namespace CarSpeedDataApp.Services.Tests
 			formFileMock.Setup(f => f.OpenReadStream()).Returns(stream);
 
 			//Act
-			var result = _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
+			var result = await _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
 
 			//Assert
 			result.Should().HaveCount(2);
@@ -57,10 +57,10 @@ namespace CarSpeedDataApp.Services.Tests
 			formFileMock.Setup(f => f.OpenReadStream()).Returns(stream);
 
 			//Act
-			var action = () => _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
+			var action = async () => _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
 
 			//Assert
-			action.Should().Throw<FormatException>();
+			action.Should().ThrowAsync<FormatException>();
 		}
 
 

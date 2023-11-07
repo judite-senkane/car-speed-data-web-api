@@ -11,7 +11,6 @@ namespace CarSpeedDataApp.Core.Tests
 		private readonly DateTime _dateAndTime = new DateTime(2020, 08, 01, 05, 31, 00);
 		private const int SPEED = 70;
 		private const string LICENSE_NUMBER = "PS86FK";
-		
 
 		[TestMethod]
 		public void CarSpeedDataSetter_CorrectDataInserted()

@@ -35,7 +35,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 			dataQuery = dataQuery.Where(s => s.SpeedKmH >= speed.Value);
 		}
 
-		var items =  dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToList();
+		var items = dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToList();
 		var totalPages = (int)Math.Ceiling(dataQuery.Count() / (double)pagePerView);
 
 		return new PagedCarSpeedData

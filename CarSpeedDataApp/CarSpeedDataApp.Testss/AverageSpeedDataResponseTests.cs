@@ -6,12 +6,12 @@ namespace CarSpeedDataApp.Tests
 	public class AverageSpeedDataResponseTests
 	{
 		private static readonly List<double> _dummyData = new() { 34.56, 45.32, 45.76, 76.54, 90.32, 43.69 };
-		private  const double FIRST_RECORD = 34.56;
+		private const double FIRST_RECORD = 34.56;
 		private static readonly int _dataCount = _dummyData.Count;
 		private static AverageSpeedDataResponse _response;
-		
+
 		[TestMethod]
-		public void Set()
+		public void AverageSpeedDataResponseSetter_ObjectCreated()
 		{
 			AverageSpeedDataResponse response = new() { AverageSpeedData = _dummyData };
 			response.AverageSpeedData.Count.Should().Be(_dataCount);
@@ -25,7 +25,7 @@ namespace CarSpeedDataApp.Tests
 		}
 
 		[TestMethod]
-		public void Get()
+		public void AverageSpeedDataResponseGetter_CorrectDataReturned()
 		{
 			var result = _response.AverageSpeedData;
 			result.Count.Should().Be(_dataCount);

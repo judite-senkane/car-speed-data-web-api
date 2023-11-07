@@ -18,7 +18,7 @@ namespace CarSpeedDataApp.Controllers
 		public FileUploadController(ICarSpeedDataService carSpeedDataService, IFileProcessingService fileProcessingService)
 		{
 			_carSpeedDataService = carSpeedDataService;
-			_fileProcessingService = fileProcessingService;	
+			_fileProcessingService = fileProcessingService;
 		}
 
 		[Route("upload")]
@@ -32,7 +32,7 @@ namespace CarSpeedDataApp.Controllers
 
 			try
 			{
-				 _carSpeedData = _fileProcessingService.ExtractDataFromFile(file).Result;
+				_carSpeedData = _fileProcessingService.ExtractDataFromFile(file).Result;
 
 			}
 			catch (FormatException)

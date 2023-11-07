@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace CarSpeedDataApp.Services
 {
-	public class FileProcessingService: IFileProcessingService
+	public class FileProcessingService : IFileProcessingService
 	{
 		private string _path;
 		public async Task<List<CarSpeedData>> ExtractDataFromFile(IFormFile file)
