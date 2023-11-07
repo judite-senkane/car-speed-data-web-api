@@ -2,7 +2,6 @@ using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
 using CarSpeedDataApp.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CarSpeedDataApp
 {

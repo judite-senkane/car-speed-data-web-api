@@ -63,7 +63,6 @@ namespace CarSpeedDataApp.Services.Tests
 			action.Should().ThrowAsync<FormatException>();
 		}
 
-
 		private string GetAssemblyDirectory()
 		{
 			return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

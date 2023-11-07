@@ -1,5 +1,6 @@
 using System.Web.Http.Cors;
 using CarSpeedDataApp.Core.Services;
+using CarSpeedDataApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarSpeedDataApp.Controllers
