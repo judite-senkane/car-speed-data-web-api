@@ -7,16 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.24">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Numind.AspNetCore.SpaServices.Extensions" Version="1.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
+    <ProjectReference Include="..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Data\CarSpeedDataApp.Data.csproj" />
     <ProjectReference Include="..\CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj" />
   </ItemGroup>

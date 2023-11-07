@@ -1,17 +1,44 @@
+using System.Web.Http.Cors;
+using CarSpeedDataApp.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarSpeedDataApp.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]
+
+	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class UserController : ControllerBase
 	{
+		private readonly ICarSpeedDataService _carSeedDataService;
 
-		private readonly ILogger<UserController> _logger;
-
-		public UserController(ILogger<UserController> logger)
+		public UserController(ICarSpeedDataService carSpeedDataService)
 		{
-			_logger = logger;
+			_carSeedDataService = carSpeedDataService;
+		}
+
+		[Route("day-speed-average")]
+		[HttpGet]
+		public IActionResult GetDayAverage(DateTime day)
+		{
+			var data = _carSeedDataService.GetDay(day);
+			if (data == null) return NotFound();
+
+			var result = new AverageSpeedDataResponse
+			{
+				AverageSpeedData = data
+			};
+			return Ok(result);
+		}
+
+		[Route("data")]
+		[HttpGet]
+		public IActionResult GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+		{
+			var result = _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
+			if (result == null) return NotFound();
+
+			return Ok(result);
 		}
 	}
 }
