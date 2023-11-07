@@ -1,8 +1,8 @@
-using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
 using CarSpeedDataApp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace CarSpeedDataApp
 {
@@ -22,10 +22,18 @@ namespace CarSpeedDataApp
 				options.UseSqlServer(builder.Configuration
 					.GetConnectionString("car-speed-data")));
 			builder.Services.AddTransient<ICarSpeedDataService, CarSpeedDataService>();
-			var mapper = AutoMapperConfig.CreateMapper();
-			builder.Services.AddSingleton(mapper);
+			builder.Services.AddTransient<ICarSpeedDataDbContext, CarSpeedDataDbContext>();
+			builder.Services.AddTransient<IFileProcessingService, FileProcessingService>();
 
 			var app = builder.Build();
+
+			app.UseCors(policyBuilder =>
+			{
+				policyBuilder
+					.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader();
+			});
 
 			// Configure the HTTP request pipeline.
 			if (app.Environment.IsDevelopment())

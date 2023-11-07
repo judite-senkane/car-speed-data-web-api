@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
+    <ProjectReference Include="..\CarSpeedDataApp.Core\CarSpeedDataApp.Core.csproj" />
   </ItemGroup>
 
 </Project>
