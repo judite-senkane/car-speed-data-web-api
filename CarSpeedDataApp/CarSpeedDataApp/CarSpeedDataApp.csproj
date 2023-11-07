@@ -21,4 +21,8 @@
     <ProjectReference Include="..\CarSpeedDataApp.Services\CarSpeedDataApp.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UploadedFiles\" />
+  </ItemGroup>
+
 </Project>
