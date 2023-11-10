@@ -8,9 +8,9 @@ namespace CarSpeedDataApp.Core.Models
 	{
 		public int Id { get; set; }
 
+		[StringLength(100)]
 		public DateTime DateAndTime { get; set; }
 
-		[JsonPropertyName("speed")]
 		public int SpeedKmH { get; set; }
 
 		[StringLength(50)]

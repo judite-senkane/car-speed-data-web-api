@@ -1,6 +1,6 @@
 export interface CarSpeedData {
   id: number,
   dateAndTime : string,
-  speed : string,
+  speedKmH : number,
   licenseNumber : string
 }

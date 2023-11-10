@@ -32,7 +32,7 @@ namespace CarSpeedDataApp.Controllers
 
 			try
 			{
-				_carSpeedData = _fileProcessingService.ExtractDataFromFile(file).Result;
+				_carSpeedData = await _fileProcessingService.ExtractDataFromFile(file);
 
 			}
 			catch (FormatException)
@@ -40,7 +40,7 @@ namespace CarSpeedDataApp.Controllers
 				return BadRequest("File data is not in the correct format");
 			}
 
-			_carSpeedDataService.CreateList(_carSpeedData);
+			await _carSpeedDataService.CreateList(_carSpeedData);
 			return Created("", "");
 		}
 	}

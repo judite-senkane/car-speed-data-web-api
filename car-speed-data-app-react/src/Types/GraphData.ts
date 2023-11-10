@@ -1,4 +1,4 @@
 export interface GraphData {
   hour: number;
-  speed: number
+  averageSpeed: number
 }

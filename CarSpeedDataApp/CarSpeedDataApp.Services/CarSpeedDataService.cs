@@ -1,6 +1,7 @@
 ﻿using CarSpeedDataApp.Core.Models;
 using CarSpeedDataApp.Core.Services;
 using CarSpeedDataApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarSpeedDataApp.Services;
 
@@ -14,7 +15,7 @@ public class CarSpeedDataService : ICarSpeedDataService
 		_context = context;
 	}
 
-	public PagedCarSpeedData GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+	public async Task<PagedCarSpeedData> GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 	{
 		if (page < 1 || page == null) page = 1;
 
@@ -35,8 +36,10 @@ public class CarSpeedDataService : ICarSpeedDataService
 			dataQuery = dataQuery.Where(s => s.SpeedKmH >= speed.Value);
 		}
 
-		var items = dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToList();
-		var totalPages = (int)Math.Ceiling(dataQuery.Count() / (double)pagePerView);
+		var items = await dataQuery.Skip((page.Value - 1) * pagePerView).Take(pagePerView).ToListAsync();
+
+		var totalItemCount = await dataQuery.CountAsync();
+		var totalPages = (int)Math.Ceiling(totalItemCount / (double)pagePerView);
 
 		return new PagedCarSpeedData
 		{
@@ -45,37 +48,33 @@ public class CarSpeedDataService : ICarSpeedDataService
 		};
 	}
 
-	public List<double> GetDay(DateTime date)
+	public async Task<List<GraphData>> GetDay(DateTime date)
 	{
-		var filteredData = _context.CarSpeedData.Where(d => d.DateAndTime.Date == date.Date);
-		List<double> result = new List<double>();
+		var result = new List<GraphData>();
+		var filteredData = await _context.CarSpeedData.Where(d => d.DateAndTime.Date == date.Date).ToListAsync();
 
-		for (int i = 0; i < 24; i++)
+		var groupedResult = filteredData.GroupBy(d => d.DateAndTime.Hour).ToList();
+
+		foreach(var group in groupedResult)
 		{
-			var speedsForHour = filteredData.Where(d => (int)d.DateAndTime.Hour == i).Select(s => s.SpeedKmH).ToList();
-
-			if (speedsForHour.Any())
+			result.Add(new GraphData
 			{
-				var averageSpeed = speedsForHour.Average();
-				result.Add(averageSpeed);
-			}
-			else
-			{
-				result.Add(0);
-			}
+				Hour = group.Key,
+				AverageSpeed = group.Select(e => e.SpeedKmH).Average()
+			}); ;
 		}
 
 		return result;
 	}
-	public void CreateList(List<CarSpeedData> dataList)
+	public async Task CreateList(List<CarSpeedData> dataList)
 	{
-		_context.CarSpeedData.AddRange(dataList);
-		_context.SaveChanges();
+		await _context.CarSpeedData.AddRangeAsync(dataList);
+		await Task.Run(() => _context.SaveChanges());
 	}
 
-	public void ClearDatabase()
+	public async Task ClearDatabase()
 	{
-		_context.CarSpeedData.RemoveRange(_context.CarSpeedData);
-		_context.SaveChanges();
+		 _context.CarSpeedData.RemoveRange(_context.CarSpeedData);
+		await Task.Run(() => _context.SaveChanges());
 	}
 }

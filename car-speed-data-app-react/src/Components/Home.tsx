@@ -113,7 +113,7 @@ function Home() {
           {carSpeedDataList.map((CarSpeedData: CarSpeedData) => (
             <tr key={CarSpeedData.id}>
               <td>{CarSpeedData.dateAndTime}</td>
-              <td>{CarSpeedData.speed}</td>
+              <td>{CarSpeedData.speedKmH}</td>
               <td>{CarSpeedData.licenseNumber}</td>
             </tr>
           ))}

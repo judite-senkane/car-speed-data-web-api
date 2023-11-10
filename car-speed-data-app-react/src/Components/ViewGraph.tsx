@@ -1,25 +1,30 @@
 import { useState } from "react";
 import axios, { AxiosResponse } from "axios";
-import { AverageSpeedResult } from "../Types/AverageSpeedResult";
+import { GraphData } from "../Types/GraphData";
 import Chart from "react-apexcharts";
 
 function ViewGraph() {
   const [filterDate, setFilterDate] = useState(null);
-  const [averageSpeedData, setAverageSpeedData] = useState<number[]>([]);
+  const [hourList, setHourList] = useState<number[]>([]);
+  const [speedList, setSpeedList] = useState<number[]>([]);
 
   const fetchData = async () => {
     try {
-      const response: AxiosResponse<AverageSpeedResult> =
-        await axios.get<AverageSpeedResult>(
-          "http://localhost:5000/User/day-speed-average",
-          {
-            params: {
-              day: filterDate,
-            },
-          }
-        );
+      const response: AxiosResponse<GraphData[]> = await axios.get<GraphData[]>(
+        "http://localhost:5000/User/day-speed-average",
+        {
+          params: {
+            day: filterDate,
+          },
+        }
+      );
 
-      setAverageSpeedData(response.data.speed);
+      const hours = response.data.map((data) => data.hour);
+      const speeds = response.data.map((data) => data.averageSpeed);
+
+      setHourList(hours);
+      setSpeedList(speeds);
+      
     } catch (error: any) {
       console.error("Error fetching car speed data:", error.message);
     }
@@ -39,16 +44,13 @@ function ViewGraph() {
         id: "line",
       },
       xaxis: {
-        categories: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-          21, 22, 23, 24,
-        ],
+        categories: hourList,
       },
     },
     series: [
       {
         name: "Speed km/h",
-        data: averageSpeedData,
+        data: speedList,
       },
     ],
   };

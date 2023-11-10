@@ -1,6 +1,5 @@
 using System.Web.Http.Cors;
 using CarSpeedDataApp.Core.Services;
-using CarSpeedDataApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarSpeedDataApp.Controllers
@@ -20,23 +19,19 @@ namespace CarSpeedDataApp.Controllers
 
 		[Route("day-speed-average")]
 		[HttpGet]
-		public IActionResult GetDayAverage(DateTime day)
+		public async Task<IActionResult> GetDayAverage(DateTime day)
 		{
-			var data = _carSeedDataService.GetDay(day);
+			var data = await _carSeedDataService.GetDay(day);
 			if (data == null) return NotFound();
 
-			var result = new AverageSpeedDataResponse
-			{
-				AverageSpeedData = data
-			};
-			return Ok(result);
+			return Ok(data);
 		}
 
 		[Route("data")]
 		[HttpGet]
-		public IActionResult GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
+		public async Task<IActionResult> GetData(int? page, DateTime? dateFrom, DateTime? dateTo, int? speed)
 		{
-			var result = _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
+			var result = await _carSeedDataService.GetData(page, dateFrom, dateTo, speed);
 			if (result == null) return NotFound();
 
 			return Ok(result);
