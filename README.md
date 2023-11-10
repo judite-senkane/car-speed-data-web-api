@@ -7,8 +7,8 @@
 
 ### Step By Step Guide
 1. Clone this project and open the folders on your computer
-1. Open the [CarSpeedDataApp.sln](https://github.com/judite-senkane/car-speed-data-web-api/blob/car-speed-data/CarSpeedDataApp/CarSpeedDataApp.sln) file in Visual Studio
-1. Open the [car-speed-data-app-react](https://github.com/judite-senkane/car-speed-data-web-api/tree/car-speed-data-react) in your Visual Studio Code
+1. Open the CarSpeedDataApp.sln file in CarSpeedDataApp project folder in Visual Studio
+1. Open the car-speed-data-app-react folder in your Visual Studio Code
 1. Make sure you have MS SQL Server downloaded on your computer.
 1. In Visual Studio (or other IDE) Package Manager Console choose CarSpeedDataApp.Data as the default project and add the following commands:
 
