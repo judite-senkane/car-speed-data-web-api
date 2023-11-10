@@ -69,12 +69,12 @@ public class CarSpeedDataService : ICarSpeedDataService
 	public async Task CreateList(List<CarSpeedData> dataList)
 	{
 		await _context.CarSpeedData.AddRangeAsync(dataList);
-		await Task.Run(() => _context.SaveChanges());
+		_context.SaveChanges();
 	}
 
-	public async Task ClearDatabase()
+	public void ClearDatabase()
 	{
 		 _context.CarSpeedData.RemoveRange(_context.CarSpeedData);
-		await Task.Run(() => _context.SaveChanges());
+		 _context.SaveChanges();
 	}
 }
