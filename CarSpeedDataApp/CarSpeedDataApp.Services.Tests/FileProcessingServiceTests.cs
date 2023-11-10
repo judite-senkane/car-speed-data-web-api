@@ -45,7 +45,7 @@ namespace CarSpeedDataApp.Services.Tests
 		}
 
 		[TestMethod]
-		public void ExtractDataFromFile_WithInvalidFile_ThrowsFormatException()
+		public async Task ExtractDataFromFile_WithInvalidFile_ThrowsFormatException()
 		{
 			//Arrange
 			var formFileMock = _mocker.GetMock<IFormFile>();
@@ -57,7 +57,7 @@ namespace CarSpeedDataApp.Services.Tests
 			formFileMock.Setup(f => f.OpenReadStream()).Returns(stream);
 
 			//Act
-			var action = async () => _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
+			var action = async () => await _fileProcessingService.ExtractDataFromFile(formFileMock.Object);
 
 			//Assert
 			action.Should().ThrowAsync<FormatException>();

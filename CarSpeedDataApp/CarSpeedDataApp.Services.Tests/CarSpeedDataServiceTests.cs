@@ -29,14 +29,14 @@ namespace CarSpeedDataApp.Services.Tests
 		};
 
 		[TestMethod]
-		public void GetData_WithNoFilters_DataResultReturned()
+		public async Task GetData_WithNoFilters_DataResultReturned()
 		{
 			//Arrange
 			CreateInstanceOfDatabase();
 			AddData();
 
 			//Act
-			var result = _carSpeedDataService.GetData(null, null, null, null);
+			var result = await _carSpeedDataService.GetData(null, null, null, null);
 
 			//Assert
 			result.Should().BeOfType<PagedCarSpeedData>();
@@ -48,7 +48,7 @@ namespace CarSpeedDataApp.Services.Tests
 		}
 
 		[TestMethod]
-		public void GetData_WithTwoFilters_DataResultReturned()
+		public async Task GetData_WithTwoFilters_DataResultReturned()
 		{
 			//Arrange
 			CreateInstanceOfDatabase();
@@ -58,7 +58,7 @@ namespace CarSpeedDataApp.Services.Tests
 			var speed = 50;
 
 			//Act
-			var result = _carSpeedDataService.GetData(null, searchDateFrom, null, speed);
+			var result = await _carSpeedDataService.GetData(null, searchDateFrom, null, speed);
 
 			//Assert
 			result.Should().BeOfType<PagedCarSpeedData>();
@@ -70,35 +70,137 @@ namespace CarSpeedDataApp.Services.Tests
 		}
 
 		[TestMethod]
-		public void GetDay_ListDoubleReceived()
+		public async Task GetDay_GraphDataListReceived()
 		{
 			//Arrange
 			CreateInstanceOfDatabase();
 			AddData();
 
-			var expectedResult = new List<double> { 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+			var expectedResult = new List<GraphData>
+			{
+				new GraphData
+				{
+					Hour = 0,
+					AverageSpeed = 60
+				}
+			};
+					//new GraphData
+					//{
+					//	Hour = 1, AverageSpeed = 0
+					//}, 
+					//new GraphData
+					//{
+					//	Hour = 2, 
+					//	AverageSpeed = 20
+					//}, 
+					//new GraphData
+					//{
+					//	Hour = 3, 
+					//	AverageSpeed = 0
+					//}, 
+					//new GraphData
+					//{
+					//	Hour = 4, 
+					//	AverageSpeed = 0
+					//},new GraphData
+					//{
+					//	Hour = 5, 
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 6, 
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 7,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 8,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 9,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 10,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 11,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 12,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 13,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 14,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 15,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 16,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 17,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 18,
+					//	AverageSpeed = 65
+					//}, new GraphData
+					//{
+					//	Hour = 19,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 20,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 21,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 22,
+					//	AverageSpeed = 0
+					//}, new GraphData
+					//{
+					//	Hour = 23,
+					//	AverageSpeed = 0
+					//}
 			var day = new DateTime(2020, 08, 01);
 
 			//Act
-			var result = _carSpeedDataService.GetDay(day);
+			var result = await _carSpeedDataService.GetDay(day);
 
 			//Assert
 			result.Should().NotBeNull();
-			result.Should().HaveCount(24);
-			result.Should().Equal(expectedResult);
+			result.Should().HaveCount(1);
+			result.Should().BeEquivalentTo(expectedResult);
 
 			//Cleanup
 			ClearDatabase();
 		}
 
 		[TestMethod]
-		public void CreateList_WithValidData_DataAddedToDatabase()
+		public async Task CreateList_WithValidData_DataAddedToDatabase()
 		{
 			//Arrange
 			CreateInstanceOfDatabase();
 
 			//Act
-			_carSpeedDataService.CreateList(_basicData);
+			await _carSpeedDataService.CreateList(_basicData);
 
 			//Assert
 			_carSpeedDataContext.CarSpeedData.Should().Equal(_basicData);
@@ -108,13 +210,13 @@ namespace CarSpeedDataApp.Services.Tests
 		}
 
 		[TestMethod]
-		public void CreateList_WithNoData_NoDataAddedToDatabase()
+		public async Task CreateList_WithNoData_NoDataAddedToDatabase()
 		{
 			//Arrange
 			CreateInstanceOfDatabase();
 			//Act
 
-			_carSpeedDataService.CreateList(new List<CarSpeedData>());
+			await _carSpeedDataService.CreateList(new List<CarSpeedData>());
 
 			//Assert
 			_carSpeedDataContext.CarSpeedData.Should().BeEmpty();
